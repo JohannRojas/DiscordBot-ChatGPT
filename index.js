@@ -28,15 +28,15 @@ const channelIDCP = '1076368177270894694'
 // const create = async() => {
   
 //   const response = await openai.createImage({
-//     prompt: 'cat with hat',
+//     prompt: 'monkey flipping off a camera',
 //     n: 1,
 //     // max_tokens: 100,
 //     size: "256x256"
 //   })
-//   console.log("🚀 ~ file: index.js:47 ~ client.on ~ response:", response.data)
+//   console.log("🚀 ~ file: index.js:47 ~ client.on ~ response:", response.data.data[0].url)
 // }
 
-// runIt()
+// create()
 
 client.on('messageCreate', async function(message) {
 
@@ -58,7 +58,7 @@ client.on('messageCreate', async function(message) {
         size: "1024x1024"
       })
 
-      message.reply(response.data[0].url)
+      message.reply(response.data.data[0].url)
 
 
   } catch (error) {
