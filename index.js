@@ -24,22 +24,41 @@ const openai = new OpenAIApi(configuration)
 const channelIDCP = '1076368177270894694'
 // const guilIDCP = '821569263197487125'
 
+
+// const create = async() => {
+  
+//   const response = await openai.createImage({
+//     prompt: 'cat with hat',
+//     n: 1,
+//     // max_tokens: 100,
+//     size: "256x256"
+//   })
+//   console.log("🚀 ~ file: index.js:47 ~ client.on ~ response:", response.data)
+// }
+
+// runIt()
+
 client.on('messageCreate', async function(message) {
 
   try {
     if (message.author.bot) return
     if (message.channel.id !== channelIDCP) return
-      const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `Hey Give me a response to this : ${message.content}`,
-        temperature: 0.5,
-        max_tokens: 300,
-        top_p: 1.0,
-        frequency_penalty: 0.5,
-        presence_penalty: 0.0,
-      });
-  
-      message.reply(response.data.choices[0].text)
+      // const response = await openai.createCompletion({
+      //   model: "text-davinci-003",
+      //   prompt: `Hey Give me a response to this : ${message.content}`,
+      //   temperature: 0.5,
+      //   max_tokens: 300,
+      //   top_p: 1.0,
+      //   frequency_penalty: 0.5,
+      //   presence_penalty: 0.0,
+      // });
+      const response = await openai.createImage({
+        prompt: `${message.content}`,
+        n: 1,
+        size: "1024x1024"
+      })
+
+      message.reply(response.data[0].url)
 
 
   } catch (error) {
